@@ -1,6 +1,12 @@
 Frequently Asked Questions
 -
 
+**Can artifacts be deleted from JitPack?**
+
+Public repository artifacts on JitPack are immutable after 7 days of publishing. You will see an indicator in the list of versions when a build becomes frozen (snowflake icon). Withing the first 7 days they can be re-built to fix any release issues. Even then we recommend creating a patch release instead.
+
+JitPack will also keep hosting artifacts after the originating git repository is deleted. To delete a build you need to have git push permissions to your git repository.
+
 **What happens if a tag or repository is deleted on GitHub?**
 
 If the project was already built then JitPack will continue serving the existing artifacts. It will not rebuild the project at the new tag. 
@@ -42,8 +48,13 @@ The output should contain a line "HTTP Could not get" with the full URL and HTTP
 
 Possible reasons:
 1. 404 - File not found. Build failed, tag does not exist or there is no such file in build artifacts.
-2. 401 - Unauthorized. No token was supplied or the token doesn't have access to the Git repository.
-3. 403 - Forbidden. Issue with subscription.
+2. 401 - Unauthorized. No token was supplied.
+3. 403 - Forbidden. The token doesn't have access to the Git repository.
+
+To re-authorize JitPack for private repositories:
+1. Sign out of JitPack
+2. Revoke JitPack on https://github.com/settings/applications
+3. Authorize on https://jitpack.io/auth
 
 If the error is unclear, feel free to contact Support.
 
@@ -121,6 +132,11 @@ There are a couple of ways of dealing with this:
   2. Use custom commands on JitPack to publish the dependency: https://gist.github.com/jitpack-io/f928a858aa5da08ad9d9662f982da983
   
 With option 2. the third party artifact becomes available as a Gradle/Maven dependency on JitPack.
+
+**Does JitPack provide artifact checksums and signing**
+
+JitPack creates sha and md5 checksums for all artifacts.
+Artifact signing is not yet available however we are planning to add it as well.
 
 **How do I resolve `Read timed out` error in Gradle?**
 

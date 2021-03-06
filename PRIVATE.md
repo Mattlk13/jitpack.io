@@ -87,7 +87,7 @@ Your user page also shows your access token that you should use in your build to
 
 ## GitLab
 
-To use JitPack with GitLab.com private repositories you need to create a [Personal Access Token](https://docs.gitlab.com/ee/api/README.html#personal-access-tokens). The only permission that the token requires is **api**.
+To use JitPack with GitLab.com private repositories you need to create a [Personal Access Token](https://docs.gitlab.com/ee/api/README.html#personal-access-tokens). The token requires **read_repository** and **read_api** scopes.
 
 In order to Look Up and manage GitLab repositories you should add the Access Token to your JitPack account:
 
@@ -232,5 +232,7 @@ If you'd like to use a different groupId (as in com.yourcompany.USER/REPO) then 
  
 ## SSH Key Authentication
 
-JitPack also supports SSH key based authentication or Deploy Keys. 
-You can generate a key on your user page and then add it to the Git repository. 
+In addition to HTTPS JitPack also supports SSH key based authentication or Deploy Keys. 
+You can generate keys on your user page and then add the public key to your Git repository.
+
+If you would like to have admin permissions for the repository on JitPack then the deploy key needs to have push permissions.
